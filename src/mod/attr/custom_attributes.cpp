@@ -618,6 +618,10 @@ namespace Mod::Attr::Custom_Attributes
 				AngleVectors( angForward, &vForward, NULL, NULL );
 				vForward *= speed;
 				pGrenade->InitGrenade( vForward, vec3_origin, player, weapon->GetTFWpnData() );
+				// Companion spellspawnboss needs launcher; keep meteor path unchanged.
+				if (strcmp(name, "spellspawnboss") == 0) {
+					pGrenade->SetLauncher(weapon);
+				}
 				pGrenade->SetDamage(weapon->GetProjectileDamage());
 				pGrenade->m_flFullDamage = 0;
 				pGrenade->SetCustomVariable("applydmgmult", Variant(true));
